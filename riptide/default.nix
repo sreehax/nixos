@@ -30,11 +30,6 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
-  # Localization
-  time.timeZone = "America/Phoenix";
-  i18n.defaultLocale = "en_US.UTF-8";
-  console.keyMap = "dvorak";
-
   # Services
   services = {
     # PipeWire Audio
@@ -50,8 +45,8 @@
     xserver = {
       enable = true;
       displayManager.sddm.enable = true;
-      displayManager.defaultSession = "plasmawayland";
-      desktopManager.plasma5.enable = true;
+      displayManager.defaultSession = "plasma";
+      desktopManager.plasma6.enable = true;
 
       libinput.enable = true;
       xkb.layout = "us";
@@ -59,29 +54,11 @@
     };
     gvfs.enable = true;
     udev.packages = [ pkgs.rtl-sdr ];
+    usbmuxd.enable  = true;
+    fwupd.enable = true;
+    openssh.enable = true;
+    openssh.settings.X11Forwarding = true;
   };
-
-  # System Packages and Fonts
-  environment.systemPackages = with pkgs; [
-    neovim
-    sddm-kcm
-    gptfdisk
-    exfatprogs
-    man-pages
-    man-pages-posix
-    lz4
-    rtl-sdr
-    pciutils
-    usbutils
-    sbctl
-  ];
-
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "IBMPlexMono" ]; })
-    noto-fonts-cjk
-    noto-fonts-emoji
-    ibm-plex
-  ];
 
   # User Account Setup
   users.groups.plugdev = {};
@@ -92,17 +69,26 @@
     description = "Sreehari Sreedev";
   };
 
+  # System Packages and Fonts
+  environment.systemPackages = with pkgs; [
+    kdePackages.sddm-kcm # sddm-kcm
+    rtl-sdr
+    pciutils
+    usbutils
+    sbctl
+  ];
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" "IBMPlexMono" ]; })
+    noto-fonts-cjk
+    noto-fonts-emoji
+    ibm-plex
+  ];
+
   # Program Settings
-  programs = {
-    zsh.enable = true;
-    dconf.enable = true;
-  };
+  programs.dconf.enable = true;
 
   # Misc
-  security.sudo.wheelNeedsPassword = false;
   security.rtkit.enable = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  documentation.dev.enable = true;
   hardware.opengl = {
     driSupport32Bit = true;
     extraPackages = with pkgs; [

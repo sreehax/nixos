@@ -7,24 +7,30 @@
       url = github:nix-community/lanzaboote;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager = {
-      url = github:nix-community/home-manager;
-      inputs.nixpkgs.follows = "nixpkgs";
+    kde2nix = {
+      url = github:nix-community/kde2nix;
     };
   };
 
-  outputs = { self, nixpkgs, lanzaboote, home-manager, ...}: {
+  outputs = { self, nixpkgs, lanzaboote, kde2nix, ...}: let
+    passthru = { inherit nixpkgs; };
+  in {
     nixosConfigurations = {
       riptide = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 	modules = [
 	  lanzaboote.nixosModules.lanzaboote
-	  ./riptide/configuration.nix
-	  home-manager.nixosModules.home-manager {
-	    home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
-	    home-manager.users.sreehari = import ./home.nix;
-	  }
+	  kde2nix.nixosModules.plasma6
+	  (import ./common passthru)
+	  ./riptide
+	];
+      };
+
+      router = nixpkgs.lib.nixosSystem {
+      	system = "x86_64-linux";
+	modules = [
+	  (import ./common passthru)
+	  ./router
 	];
       };
     };
