@@ -13,15 +13,16 @@
   };
 
   outputs = { self, nixpkgs, lanzaboote, kde2nix, ...}: let
-    passthru = { inherit nixpkgs; };
+    specialArgs = { inherit nixpkgs lanzaboote kde2nix; };
   in {
     nixosConfigurations = {
       riptide = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+	inherit specialArgs;
 	modules = [
 	  lanzaboote.nixosModules.lanzaboote
 	  kde2nix.nixosModules.plasma6
-	  (import ./common passthru)
+	  ./common
 	  ./riptide
 	];
       };
@@ -29,7 +30,7 @@
       router = nixpkgs.lib.nixosSystem {
       	system = "x86_64-linux";
 	modules = [
-	  (import ./common passthru)
+	  ./common
 	  ./router
 	];
       };

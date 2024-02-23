@@ -1,5 +1,4 @@
-{ nixpkgs }:
-{ pkgs, lib, ... }: {
+{ pkgs, lib, nixpkgs, lanzaboote, kde2nix, ... }: {
   # Localization
   time.timeZone = "America/Phoenix";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -24,6 +23,8 @@
   nix = {
     registry = {
       n.flake = nixpkgs;
+      lzbt.flake = lanzaboote;
+      kde2nix.flake = kde2nix;
     };
     channel.enable = false;
     settings.nix-path = lib.mkForce "nixpkgs=/etc/nix/inputs/nixpkgs";
