@@ -27,8 +27,20 @@
 	];
       };
 
+      thinkpad = nikpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+	inherit specialArgs;
+	modules = [
+	  lanzaboote.nixosModules.lanzaboote
+	  kde2nix.nixosModules.plasma6
+	  ./common
+	  ./thinkpad
+	];
+      };
+
       router = nixpkgs.lib.nixosSystem {
       	system = "x86_64-linux";
+	inherit specialArgs;
 	modules = [
 	  ./common
 	  ./router
