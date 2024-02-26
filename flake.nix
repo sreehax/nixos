@@ -9,11 +9,13 @@
     };
     kde2nix = {
       url = github:nix-community/kde2nix;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+    bruh.url = github:sreehax/nixpkgs/qtgreet;
   };
 
-  outputs = { self, nixpkgs, lanzaboote, kde2nix, ...}: let
-    specialArgs = { inherit nixpkgs lanzaboote kde2nix; };
+  outputs = { self, nixpkgs, lanzaboote, kde2nix, bruh, ...}: let
+    specialArgs = { inherit nixpkgs lanzaboote kde2nix bruh; };
   in {
     nixosConfigurations = {
       riptide = nixpkgs.lib.nixosSystem {
@@ -27,20 +29,8 @@
 	];
       };
 
-      thinkpad = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-	inherit specialArgs;
-	modules = [
-	  lanzaboote.nixosModules.lanzaboote
-	  kde2nix.nixosModules.plasma6
-	  ./common
-	  ./thinkpad
-	];
-      };
-
       router = nixpkgs.lib.nixosSystem {
       	system = "x86_64-linux";
-	inherit specialArgs;
 	modules = [
 	  ./common
 	  ./router

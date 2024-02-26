@@ -1,6 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, bruh, ... }:
 
-{
+let
+  bruhpkgs = import bruh {
+    system = "x86_64-linux";
+  };
+in {
   # Import Hardware Configuration
   imports =
     [
@@ -32,6 +36,8 @@
 
   # Services
   services = {
+    hardware.openrgb.enable = true;
+    hardware.openrgb.package = pkgs.openrgb-with-all-plugins;
     # PipeWire Audio
     pipewire = {
       enable = true;
@@ -41,10 +47,18 @@
       jack.enable = true;
     };
 
+    greetd = {
+      enable = true;
+      settings = {
+        #default_session.command = "${pkgs.labwc}/bin/labwc -s '${bruhpkgs.greetd.qtgreet}/bin/qtgreet -d /var/lib/qtgreet && wayland-logout'";
+	default_session.command = "${pkgs.cage}/bin/cage -- ${bruhpkgs.greetd.qtgreet}/bin/qtgreet -d /var/lib/qtgreet";
+      };
+    };
+
     # Graphical Settings
     xserver = {
       enable = true;
-      displayManager.sddm.enable = true;
+      displayManager.sddm.enable = false;
       displayManager.defaultSession = "plasma";
       desktopManager.plasma6.enable = true;
 
