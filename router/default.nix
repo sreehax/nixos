@@ -86,6 +86,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAwx/H7u/Ni7W0AM+U8crN3EpV/0IBRvjtkahUEwjp/9 user@balls.local"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEYI8038ZK8GFZmX2j8gwe5OR70+gP2PZFz79TCFvZQH sreehari@riptide"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEZia9DRTRY7GgX5/3WY8HkHolO0yHG7i+jwIZ8bg9eZ sreehari@riptide"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEN3FMrCW2xMxXglxe9IxQeynLeqkWSDeN25AFbGUcYF sreehari@thinkpad"
     ];
   };
   users.users.guest = {

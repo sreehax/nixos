@@ -39,7 +39,7 @@ table inet filter {
 
 table ip nat {
   chain prerouting {
-    type nat hook prerouting priority 0
+    type nat hook prerouting priority -100
     policy accept
   }
 
