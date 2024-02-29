@@ -7,15 +7,10 @@
       url = github:nix-community/lanzaboote;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    kde2nix = {
-      url = github:nix-community/kde2nix;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    bruh.url = github:sreehax/nixpkgs/qtgreet;
   };
 
-  outputs = { self, nixpkgs, lanzaboote, kde2nix, bruh, ...}: let
-    specialArgs = { inherit nixpkgs lanzaboote kde2nix bruh; };
+  outputs = { self, nixpkgs, lanzaboote, ...}: let
+    specialArgs = { inherit nixpkgs lanzaboote; };
   in {
     nixosConfigurations = {
       riptide = nixpkgs.lib.nixosSystem {
@@ -23,7 +18,6 @@
 	inherit specialArgs;
 	modules = [
 	  lanzaboote.nixosModules.lanzaboote
-	  kde2nix.nixosModules.plasma6
 	  ./common
 	  ./riptide
 	];

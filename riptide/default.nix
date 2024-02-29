@@ -1,15 +1,9 @@
-{ config, lib, pkgs, bruh, ... }:
+{ config, lib, pkgs, ... }:
 
-let
-  bruhpkgs = import bruh {
-    system = "x86_64-linux";
-  };
-in {
+{
   # Import Hardware Configuration
   imports =
-    [
-      ./hardware.nix
-    ];
+    [ ./hardware.nix ];
   
   # Boot
   boot = {
@@ -23,6 +17,7 @@ in {
     kernelPackages = pkgs.linuxPackages_latest;
     supportedFilesystems = [ "bcachefs" ];
     blacklistedKernelModules = [ "dvb_usb_rtl28xxu" ];
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 
   # Networking
@@ -35,7 +30,24 @@ in {
   hardware.bluetooth.powerOnBoot = true;
 
   # Services
+  systemd.services.NetworkManager-wait-online.enable = false;
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
   services = {
+    nix-serve = {
+      enable = true;
+      secretKeyFile = "/var/cache-priv-key.pem";
+    };
+    nginx = {
+      enable = true;
+      recommendedProxySettings = true;
+      virtualHosts = {
+        "cumslut.ssree.dev" = {
+	  locations."/".proxyPass = "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
+	  addSSL = true;
+	  enableACME = true;
+	};
+      };
+    };
     hardware.openrgb.enable = true;
     hardware.openrgb.package = pkgs.openrgb-with-all-plugins;
     # PipeWire Audio
@@ -47,18 +59,10 @@ in {
       jack.enable = true;
     };
 
-    greetd = {
-      enable = true;
-      settings = {
-        #default_session.command = "${pkgs.labwc}/bin/labwc -s '${bruhpkgs.greetd.qtgreet}/bin/qtgreet -d /var/lib/qtgreet && wayland-logout'";
-	default_session.command = "${pkgs.cage}/bin/cage -- ${bruhpkgs.greetd.qtgreet}/bin/qtgreet -d /var/lib/qtgreet";
-      };
-    };
-
     # Graphical Settings
     xserver = {
       enable = true;
-      displayManager.sddm.enable = false;
+      displayManager.sddm.enable = true;
       displayManager.defaultSession = "plasma";
       desktopManager.plasma6.enable = true;
 
@@ -85,7 +89,7 @@ in {
 
   # System Packages and Fonts
   environment.systemPackages = with pkgs; [
-    kdePackages.sddm-kcm # sddm-kcm
+    kdePackages.sddm-kcm
     rtl-sdr
     pciutils
     usbutils
@@ -103,6 +107,10 @@ in {
 
   # Misc
   security.rtkit.enable = true;
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "sreehairy@gmail.com";
+  };
   hardware.opengl = {
     driSupport32Bit = true;
     extraPackages = with pkgs; [
