@@ -5,7 +5,14 @@
   ...
 }:
 {
-  imports = [ ./hardware.nix ];
+  imports = [
+    ./hardware.nix
+    ./wireguard.nix
+    ./vaultwarden.nix
+    ./nsd.nix
+    ./nginx.nix
+    ./mailserver.nix
+  ];
 
   # Boot
   boot = {
@@ -48,20 +55,14 @@
     firewall.enable = false;
     nftables = {
       enable = true;
-      ruleset = import ./nftables.nix;
+      ruleset = builtins.readFile ./nftables.conf;
     };
-    wireguard = import ./wireguard.nix;
   };
 
   # Services
   services = {
-    vaultwarden = import ./vaultwarden.nix // {
-      environmentFile = config.age.secrets.vaultwarden.path;
-    };
     openssh.enable = true;
     openssh.settings.PasswordAuthentication = false;
-    nsd = import ./nsd.nix;
-    nginx = import ./nginx.nix;
     roundcube = {
       enable = true;
       hostName = "mail.ssree.dev";
@@ -73,7 +74,7 @@
     };
     bird2 = {
       enable = true;
-      config = import ./bird2.nix;
+      config = builtins.readFile ./bird2.conf;
     };
     postgresql = {
       enable = true;
@@ -88,7 +89,6 @@
   };
 
   # Mail Server
-  mailserver = import ./mailserver.nix;
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "me@ssree.dev";
 
