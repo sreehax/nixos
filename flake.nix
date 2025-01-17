@@ -18,6 +18,15 @@
       url = "github:mitchellh/zig-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    simple-nixos-mailserver = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
     ancient-nixpkgs.url = "github:nixos/nixpkgs/09704d31f17bb6eb2de763ac31ec3624b811f57c";
   };
 
@@ -58,6 +67,16 @@
             ./common
             ./riptide
             ./riptide/matlab.nix
+          ];
+        };
+        lux = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          modules = [
+            inputs.agenix.nixosModules.default
+            inputs.simple-nixos-mailserver.nixosModule
+            ./common
+            ./lux
+            ./secrets
           ];
         };
       };
