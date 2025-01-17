@@ -93,11 +93,11 @@
   ];
 
   # User Account Setup
-  users.users.sreehari = {
+  users.users.sydney = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     shell = pkgs.zsh;
-    description = "Sreehari Sreedev";
+    description = "Sydney Sreedev";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEYI8038ZK8GFZmX2j8gwe5OR70+gP2PZFz79TCFvZQH sreehari@riptide"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAwx/H7u/Ni7W0AM+U8crN3EpV/0IBRvjtkahUEwjp/9 Black & White TV"

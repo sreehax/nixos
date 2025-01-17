@@ -6,6 +6,6 @@
   config.home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.sreehari = ./pkgs.nix;
+    users.sydney = ./pkgs.nix;
   };
 }
