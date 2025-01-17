@@ -99,9 +99,9 @@
     shell = pkgs.zsh;
     description = "Sydney Sreedev";
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEYI8038ZK8GFZmX2j8gwe5OR70+gP2PZFz79TCFvZQH sreehari@riptide"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEYI8038ZK8GFZmX2j8gwe5OR70+gP2PZFz79TCFvZQH"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAwx/H7u/Ni7W0AM+U8crN3EpV/0IBRvjtkahUEwjp/9 Black & White TV"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO1WTWlpbr3Nb9L0yHW6IfscQhWgC8p3uZd8w4bojcrL sreehari@t480s"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO1WTWlpbr3Nb9L0yHW6IfscQhWgC8p3uZd8w4bojcrL"
       "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBE7hC8CRXjSwVhgAdah7RegsyBisL9BQgEBuHMKrWLAxBKQcST5HrgxaiDyWOZkw+5rDQ5gjn05ge9z+oh/xm0k="
     ];
   };

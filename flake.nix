@@ -61,7 +61,6 @@
             inputs.lanzaboote.nixosModules.lanzaboote
             ./common
             ./riptide
-            ./riptide/matlab.nix
 	    ./home
           ];
         };

@@ -65,14 +65,14 @@
 
   # User Account Setup
   users.groups.plugdev = { };
-  users.users.sreehari = {
+  users.users.sydney = {
     isNormalUser = true;
     extraGroups = [
       "wheel"
       "plugdev"
     ];
     shell = pkgs.zsh;
-    description = "Sreehari Sreedev";
+    description = "Sydney Sreedev";
   };
 
   # System Packages and Fonts
