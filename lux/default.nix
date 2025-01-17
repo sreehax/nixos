@@ -115,6 +115,9 @@
       "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBE7hC8CRXjSwVhgAdah7RegsyBisL9BQgEBuHMKrWLAxBKQcST5HrgxaiDyWOZkw+5rDQ5gjn05ge9z+oh/xm0k="
     ];
   };
+  nix.settings.trusted-users = [
+    "@wheel"
+  ];
 
   # DO NOT CHANGE THIS
   system.stateVersion = "24.05";
