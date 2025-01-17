@@ -12,6 +12,5 @@ let
   systems = [ lux ];
 in
 {
-  "nftables.age".publicKeys = users ++ systems;
   "vaultwarden.age".publicKeys = users ++ systems;
 }

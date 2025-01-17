@@ -48,7 +48,7 @@
     firewall.enable = false;
     nftables = {
       enable = true;
-      rulesetFile = config.age.secrets.nftables.path;
+      ruleset = import ./nftables.nix;
     };
     wireguard = import ./wireguard.nix;
   };
