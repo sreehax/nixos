@@ -1,7 +1,7 @@
 # NixOS module
 {
   age.secrets = {
-    nftables.file = ./lux/nftables.age;
-    vaultwarden.file = ./lux/vaultwarden.age;
+    "nftables".file = ./nftables.age;
+    "vaultwarden".file = ./vaultwarden.age;
   };
 }
