@@ -6,10 +6,24 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-matlab = {
+      url = "gitlab:doronbehar/nix-matlab";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+    {
+      nixpkgs,
+      home-manager,
+      lanzaboote,
+      nix-matlab,
+      ...
+    }@inputs:
     let
       inherit (nixpkgs) lib;
       specialArgs = { inherit inputs; };
@@ -29,6 +43,15 @@
               home-manager.useUserPackages = true;
               home-manager.users.sreehari = import ./home;
             }
+          ];
+        };
+        riptide = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          modules = [
+            lanzaboote.nixosModules.lanzaboote
+            ./common
+            ./riptide
+            ./riptide/matlab.nix
           ];
         };
       };
