@@ -63,15 +63,6 @@
   services = {
     openssh.enable = true;
     openssh.settings.PasswordAuthentication = false;
-    roundcube = {
-      enable = true;
-      hostName = "mail.ssree.dev";
-      extraConfig = ''
-                $config['smtp_server'] = "tls://${config.mailserver.fqdn}";
-        	$config['smtp_user'] = "%u";
-        	$config['smtp_pass'] = "%p";
-      '';
-    };
     bird2 = {
       enable = true;
       config = builtins.readFile ./bird2.conf;
@@ -80,15 +71,14 @@
       enable = true;
       ensureDatabases = [ "cse412" ];
       authentication = pkgs.lib.mkOverride 10 ''
-                #type database  DBuser  auth-method
-        	local all       all     trust
-        	host  all      all     127.0.0.1/32   trust
-        	host    all             all             ::1/128                 trust
+        #type database  DBuser  auth-method
+        local all       all     trust
+        host  all      all     127.0.0.1/32   trust
+        host    all             all             ::1/128                 trust
       '';
     };
   };
 
-  # Mail Server
   security.acme.acceptTerms = true;
   security.acme.defaults.email = "me@ssree.dev";
 

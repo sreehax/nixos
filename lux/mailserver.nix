@@ -58,4 +58,13 @@
     backup.snapshotRoot = "/mnt/data/mail/rsnapshot";
     borgbackup.repoLocation = "/mnt/data/mail/borgbackup";
   };
+  services.roundcube = {
+    enable = true;
+    hostName = config.mailserver.fqdn;
+    extraConfig = ''
+      $config['smtp_server'] = "tls://${config.mailserver.fqdn}";
+      $config['smtp_user'] = "%u";
+      $config['smtp_pass'] = "%p";
+    '';
+  };
 }
