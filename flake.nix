@@ -51,11 +51,7 @@
             ./common
             ./t480s
             inputs.home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.sreehari = import ./home;
-            }
+	    ./home
           ];
 
         };
@@ -66,12 +62,7 @@
             ./common
             ./riptide
             ./riptide/matlab.nix
-            inputs.home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.sreehari = import ./home;
-            }
+	    ./home
           ];
         };
         lux = nixpkgs.lib.nixosSystem {
@@ -93,7 +84,7 @@
           system = "aarch64-darwin";
           inherit overlays;
         };
-        modules = [ ./mbp ];
+        modules = [ ./home/mbp ];
       };
       formatter = forAllSystems (pkgs: pkgs.nixfmt-rfc-style);
     };
