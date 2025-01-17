@@ -1,7 +1,7 @@
 {
   config,
   pkgs,
-  nixpkgs,
+  inputs,
   ...
 }:
 {
@@ -78,6 +78,11 @@
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowBroken = true;
+
+  # same flake registry stuff
+  nix.registry = {
+    n.flake = inputs.nixpkgs;
+  };
 
   # DO NOT CHANGE
   home.stateVersion = "23.11";

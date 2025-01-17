@@ -15,8 +15,8 @@
     (python3.withPackages (
       ppkgs: with ppkgs; [
         pwntools
-	scapy
-	pycryptodome
+        scapy
+        pycryptodome
       ]
     ))
     tidal-hifi

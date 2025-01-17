@@ -1,5 +1,4 @@
 {
-  description = "flake for t480s";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
@@ -26,7 +25,7 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     ancient-nixpkgs.url = "github:nixos/nixpkgs/09704d31f17bb6eb2de763ac31ec3624b811f57c";
   };
 
@@ -67,11 +66,12 @@
             ./common
             ./riptide
             ./riptide/matlab.nix
-	    inputs.home-manager.nixosModules.home-manager {
-	      home-manager.useGlobalPkgs = true;
-	      home-manager.useUserPackages = true;
-	      home-manager.users.sreehari = import ./home;
-	    }
+            inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.sreehari = import ./home;
+            }
           ];
         };
         lux = nixpkgs.lib.nixosSystem {
