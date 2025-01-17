@@ -67,6 +67,11 @@
             ./common
             ./riptide
             ./riptide/matlab.nix
+	    inputs.home-manager.nixosModules.home-manager {
+	      home-manager.useGlobalPkgs = true;
+	      home-manager.useUserPackages = true;
+	      home-manager.users.sreehari = import ./home;
+	    }
           ];
         };
         lux = nixpkgs.lib.nixosSystem {

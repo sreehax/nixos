@@ -6,14 +6,17 @@
 
   home.packages = with pkgs; [
     fastfetch
+    hyfetch
     firefox
-    #matlab
-    #matlab-shell
-    vscode
+    tmux
+    matlab
+    matlab-shell
     texlive.combined.scheme-small
     (python3.withPackages (
       ppkgs: with ppkgs; [
         pwntools
+	scapy
+	pycryptodome
       ]
     ))
     tidal-hifi
@@ -23,6 +26,13 @@
     libreoffice-qt6-fresh
     fragments
     vlc
+    lean4
+    ripgrep
+    lua-language-server
+    clang-tools
+    winetricks
+    wineWowPackages.stable
+    darktable
     zoom-us
     corefonts
     vistafonts

@@ -125,7 +125,7 @@
   fonts.packages = with pkgs; [
     #(nerdfonts.override { fonts = [ "FiraCode" "IBMPlexMono" ]; })
     nerd-fonts.fira-code
-    plemoljp-nf
+    nerd-fonts.blex-mono
     noto-fonts-cjk-sans
     noto-fonts-emoji
     ibm-plex
