@@ -10,5 +10,6 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     users.sydney = ./pkgs.nix;
+    backupFileExtension = "backup";
   };
 }

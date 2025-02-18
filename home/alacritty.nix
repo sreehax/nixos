@@ -16,7 +16,7 @@
       family = "BlexMono Nerd Font";
       style = "Bold Italic";
     };
-    size = 13;
+    size = 11;
   };
 
   cursor = {

@@ -39,6 +39,8 @@
     scenebuilder
     kicad
     ghostty
+    tor-browser
+    kiwix
   ];
   fonts.fontconfig.enable = true;
 

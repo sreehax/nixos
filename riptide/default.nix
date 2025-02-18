@@ -19,22 +19,8 @@
     initrd.systemd.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
     binfmt.emulatedSystems = [ "aarch64-linux" ];
-    plymouth = {
-      enable = true;
-    };
     # Silent boot
-    consoleLogLevel = 0;
-    initrd.verbose = false;
     initrd.kernelModules = [ "i915" ];
-    kernelParams = [
-      "quiet"
-      "splash"
-      "boot.shell_on_fail"
-      "loglevel=3"
-      "rd.systemd.show_status=false"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
-    ];
   };
 
   # Networking
@@ -137,9 +123,6 @@
   programs.dconf.enable = true;
   programs.wireshark.enable = true;
   programs.wireshark.package = pkgs.wireshark;
-  programs.virt-manager.enable = true;
-  virtualisation.waydroid.enable = true;
-  virtualisation.libvirtd.enable = true;
 
   # Misc
   security.rtkit.enable = true;

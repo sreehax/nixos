@@ -16,7 +16,7 @@
     zigpkgs.master-2025-01-03
     bun
     acpica-tools
-    ancient.neovim
+    neovim
     nodejs
     nil
     lua-language-server
