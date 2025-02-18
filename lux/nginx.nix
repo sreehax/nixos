@@ -19,6 +19,11 @@
       enableACME = true;
       root = "/mnt/data/public_web";
     };
+    virtualHosts."frostium.org" = {
+      forceSSL = true;
+      enableACME = true;
+      root = "/mnt/data/frostium";
+    };
     virtualHosts."mta-sts.diabolicalbigblack.wang" = {
       addSSL = true;
       enableACME = true;

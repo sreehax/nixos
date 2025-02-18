@@ -7,25 +7,26 @@
     # use grub because I have SeaBIOS for now...
     loader.grub.enable = true;
     loader.grub.device = "/dev/nvme0n1";
+    loader.grub.efiSupport = true;
     initrd.systemd.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
     binfmt.emulatedSystems = [ "aarch64-linux" ];
     plymouth = {
-      enable = true;
+      enable = false;
     };
     # Silent boot
-    consoleLogLevel = 0;
-    initrd.verbose = false;
+    #consoleLogLevel = 0;
+    #initrd.verbose = false;
     initrd.kernelModules = [ "i915" ];
-    kernelParams = [
-      "quiet"
-      "splash"
-      "boot.shell_on_fail"
-      "loglevel=3"
-      "rd.systemd.show_status=false"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
-    ];
+    #kernelParams = [
+    #  "quiet"
+    #  "splash"
+    #  "boot.shell_on_fail"
+    #  "loglevel=3"
+    #  "rd.systemd.show_status=false"
+    #  "rd.udev.log_level=3"
+    #  "udev.log_priority=3"
+    #];
   };
 
   # Networking
@@ -55,6 +56,7 @@
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
+      wayland.compositor = "kwin";
     };
     xserver = {
       enable = true;
@@ -70,6 +72,7 @@
     extraGroups = [
       "wheel"
       "plugdev"
+      "libvirtd"
     ];
     shell = pkgs.zsh;
     description = "Sydney Sreedev";
@@ -101,7 +104,8 @@
     extraPackages = with pkgs; [
       intel-compute-runtime
       intel-media-driver
-      ocl-icd
+      intel-ocl
+      vpl-gpu-rt
     ];
     extraPackages32 = with pkgs.pkgsi686Linux; [
       intel-media-driver

@@ -39,6 +39,7 @@
     scenebuilder
     kicad
     ghostty
+    hut
     tor-browser
     kiwix
   ];

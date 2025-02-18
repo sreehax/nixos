@@ -6,8 +6,18 @@
       "ssree.dev"
       "hisonly.fans"
       "diabolicalbigblack.wang"
+      "frostium.org"
     ];
     loginAccounts = {
+      "connect@frostium.org" = {
+        hashedPasswordFile = "/mnt/data/mail/users/connect@frostium.org";
+      };
+      "sreehari@frostium.org" = {
+        hashedPasswordFile = "/mnt/data/mail/users/sreehari@frostium.org";
+      };
+      "felix@frostium.org" = {
+        hashedPasswordFile = "/mnt/data/mail/users/felix@frostium.org";
+      };
       "me@ssree.dev" = {
         hashedPasswordFile = "/mnt/data/mail/users/me@ssree.dev";
         aliases = [
