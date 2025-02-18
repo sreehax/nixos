@@ -8,7 +8,7 @@
 
 {
   # SSD
-  services.fstrim.enable = lib.mkDefault = true;
+  services.fstrim.enable = lib.mkDefault true;
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];

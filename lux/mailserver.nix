@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   mailserver = {
     enable = true;
@@ -60,7 +61,7 @@
     fullTextSearch = {
       enable = true;
       autoIndex = true;
-      indexAttachments = true;
+      #indexAttachments = true;
       enforced = "body";
     };
     dkimKeyBits = 2048;

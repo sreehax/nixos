@@ -63,8 +63,9 @@
   services = {
     openssh.enable = true;
     openssh.settings.PasswordAuthentication = false;
-    bird2 = {
-      enable = true;
+    bird = {
+      enable = false;
+      package = pkgs.bird2;
       config = builtins.readFile ./bird2.conf;
     };
     postgresql = {
@@ -90,6 +91,7 @@
     fastfetch
     tmux
     arch-install-scripts
+    ghostty
   ];
 
   # User Account Setup

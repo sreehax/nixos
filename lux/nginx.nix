@@ -1,9 +1,16 @@
+{ inputs, pkgs, ... }:
 {
   services.nginx = {
     enable = true;
     recommendedGzipSettings = true;
+    recommendedOptimisation = true;
     recommendedTlsSettings = true;
     recommendedProxySettings = true;
+
+    virtualHosts."origin.ssree.dev" = {
+      # Let nginx render our blog...
+      locations."/".root = inputs.site.packages.${pkgs.system}.web;
+    };
     virtualHosts."mta-sts.ssree.dev" = {
       addSSL = true;
       enableACME = true;
@@ -33,8 +40,8 @@
       forceSSL = true;
       enableACME = true;
       extraConfig = ''
-              client_max_body_size 1000M;
-            '';
+        client_max_body_size 1000M;
+      '';
       locations."/" = {
         proxyPass = "http://127.0.0.1:8222";
         proxyWebsockets = true;

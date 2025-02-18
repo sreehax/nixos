@@ -25,6 +25,10 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    site = {
+      url = "github:sreehax/site";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -48,7 +52,7 @@
             ./common
             ./t480s
             inputs.home-manager.nixosModules.home-manager
-	    ./home
+            ./home
           ];
 
         };
@@ -58,7 +62,7 @@
             inputs.lanzaboote.nixosModules.lanzaboote
             ./common
             ./riptide
-	    ./home
+            ./home
           ];
         };
         lux = nixpkgs.lib.nixosSystem {
