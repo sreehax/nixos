@@ -9,7 +9,12 @@
 
     virtualHosts."origin.ssree.dev" = {
       # Let nginx render our blog...
+      forceSSL = true;
+      enableACME = true;
       locations."/".root = inputs.site.packages.${pkgs.system}.web;
+      extraConfig = ''
+        error_page 404 /404.html;
+      '';
     };
     virtualHosts."mta-sts.ssree.dev" = {
       addSSL = true;
@@ -26,7 +31,7 @@
       enableACME = true;
       root = "/mnt/data/public_web";
     };
-    virtualHosts."frostium.org" = {
+    virtualHosts."origin.frostium.org" = {
       forceSSL = true;
       enableACME = true;
       root = "/mnt/data/frostium";
@@ -60,10 +65,10 @@
       enableACME = true;
       root = "/mnt/data/diabolicalbigblack.wang";
     };
+    virtualHosts."hisonly.fans" = {
+      forceSSL = true;
+      enableACME = true;
+      root = "/mnt/data/hisonly.fans";
+    };
   };
 }
-#virtualHosts."hisonly.fans" = {
-#    forceSSL = true;
-#	enableACME = true;
-#	root = "/mnt/data/hisonly.fans";
-#   };
