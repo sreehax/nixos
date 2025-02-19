@@ -179,6 +179,26 @@
         "type": "github"
       }
     },
+    "frostium-site": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1739961444,
+        "narHash": "sha256-LFdabSbaVryV7pfchqzOcsUkN7p15SZuiiL+Zv/ARlY=",
+        "ref": "refs/heads/main",
+        "rev": "c4da78dc38e58709aa2dbfd4f22e2dd3183ba243",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@github.com/frostium-project/website"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/frostium-project/website"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -366,6 +386,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "frostium-site": "frostium-site",
         "home-manager": "home-manager_2",
         "lanzaboote": "lanzaboote",
         "nix-matlab": "nix-matlab",

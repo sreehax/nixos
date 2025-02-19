@@ -34,7 +34,11 @@
     virtualHosts."origin.frostium.org" = {
       forceSSL = true;
       enableACME = true;
-      root = "/mnt/data/frostium";
+      locations."/".root = inputs.site.packages.${pkgs.system}.web;
+      extraConfig = ''
+        error_page 404 /404.html;
+      '';
+
     };
     virtualHosts."mta-sts.diabolicalbigblack.wang" = {
       addSSL = true;

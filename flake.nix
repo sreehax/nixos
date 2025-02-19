@@ -29,6 +29,10 @@
       url = "github:sreehax/site";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    frostium-site = {
+      url = "git+ssh://git@github.com/frostium-project/website";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
