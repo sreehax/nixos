@@ -34,7 +34,7 @@
     virtualHosts."origin.frostium.org" = {
       forceSSL = true;
       enableACME = true;
-      locations."/".root = inputs.site.packages.${pkgs.system}.web;
+      locations."/".root = inputs.frostium-site.packages.${pkgs.system}.web;
       extraConfig = ''
         error_page 404 /404.html;
       '';
