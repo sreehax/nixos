@@ -186,11 +186,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739963170,
-        "narHash": "sha256-50kKCGlC60FrP/DfSCaHR96B71UJhZSmV/kxysiBdAU=",
+        "lastModified": 1740194701,
+        "narHash": "sha256-NOhUelhkx7rkra9/Z9DS17m4Tix4LlwaD9dz8rEOmuA=",
         "ref": "refs/heads/main",
-        "rev": "46de91d56a4913fb9cf20c17f8bdefc7130606b6",
-        "revCount": 2,
+        "rev": "d0a5602d250babc18038b26e8e74d1bbb8c01da7",
+        "revCount": 4,
         "type": "git",
         "url": "ssh://git@github.com/frostium-project/website"
       },
