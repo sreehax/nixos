@@ -13,10 +13,6 @@
       url = "gitlab:doronbehar/nix-matlab";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zig-overlay = {
-      url = "github:mitchellh/zig-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     simple-nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,11 +38,6 @@
       specialArgs = { inherit inputs; };
       forAllSystems =
         body: lib.genAttrs lib.systems.flakeExposed (system: body nixpkgs.legacyPackages.${system});
-      overlays = [
-        (final: prev: {
-          zigpkgs = inputs.zig-overlay.packages.${prev.system};
-        })
-      ];
     in
     {
       nixosConfigurations = {
@@ -86,7 +77,6 @@
         pkgs = import nixpkgs {
           # is there somewhere else to define the system??
           system = "aarch64-darwin";
-          inherit overlays;
         };
         modules = [ ./home/mbp ];
       };

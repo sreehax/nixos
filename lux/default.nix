@@ -18,6 +18,11 @@
   boot = {
     loader.grub.enable = true;
     loader.grub.device = "/dev/vda";
+    loader.limine = {
+      enable = false;
+      biosSupport = true;
+      biosDevice = "/dev/vda";
+    };
     kernel.sysctl = {
       "net.ipv4.conf.all.forwarding" = true;
       "net.ipv6.conf.all.forwarding" = true;

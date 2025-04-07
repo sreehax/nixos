@@ -5,6 +5,9 @@
   home.stateVersion = "24.05";
 
   home.packages = with pkgs; [
+    zig
+    zls
+    zed-editor
     fastfetch
     hyfetch
     firefox
@@ -41,7 +44,8 @@
     ghostty
     hut
     tor-browser
-    kiwix
+    gcc
+    gnumake
   ];
   fonts.fontconfig.enable = true;
 
@@ -57,6 +61,17 @@
   programs.alacritty = {
     enable = true;
     settings = import ./alacritty.nix;
+  };
+  programs.librewolf = {
+    enable = true;
+    # Enable WebGL, cookies and history
+    settings = {
+      "webgl.disabled" = false;
+      "privacy.resistFingerprinting" = false;
+      "privacy.clearOnShutdown.history" = false;
+      "privacy.clearOnShutdown.cookies" = false;
+      "network.cookie.lifetimePolicy" = 0;
+    };
   };
 
   programs.home-manager.enable = true;

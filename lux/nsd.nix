@@ -37,6 +37,17 @@
           "AXFR 185.44.83.60 lux_key"
         ];
       };
+      "sydney.blue" = {
+        data = "sydney.blue. 3600 IN SOA ns1.ssree.dev. admin.ssree.dev. 1970010101 10000 2400 604800 3600";
+        outgoingInterface = "104.244.76.122";
+        allowNotify = [
+          "185.44.83.60 lux_key"
+          "127.0.0.1 NOKEY"
+        ];
+        requestXFR = [
+          "AXFR 185.44.83.60 lux_key"
+        ];
+      };
       "8.3.1.c.f.d.5.0.a.2.ip6.arpa" = {
         data = "8.3.1.c.f.d.5.0.a.2.ip6.arpa. 3600 IN SOA ns1.ssree.dev. admin.ssree.dev. 1970010101 10000 2400 604800 3600";
         outgoingInterface = "104.244.76.122";

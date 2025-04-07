@@ -15,6 +15,7 @@
       extraConfig = ''
         error_page 404 /404.html;
       '';
+      locations."/cdn".root = "/mnt/data/public_web";
     };
     virtualHosts."mta-sts.ssree.dev" = {
       addSSL = true;

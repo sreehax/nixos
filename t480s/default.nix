@@ -4,10 +4,20 @@
 
   # Boot
   boot = {
-    # use grub because I have SeaBIOS for now...
-    loader.grub.enable = true;
-    loader.grub.device = "/dev/nvme0n1";
-    loader.grub.efiSupport = true;
+    #loader.grub.enable = true;
+    #loader.grub.device = "/dev/nvme0n1";
+    #loader.grub.efiSupport = true;
+    loader.limine = {
+      enable = true;
+      biosSupport = true;
+      biosDevice = "/dev/nvme0n1";
+      efiSupport = true;
+      efiInstallAsRemovable = true;
+      partitionIndex = 3;
+      extraEntries = builtins.readFile ./limine.extra.conf;
+      style.interface.resolution = "1920x1080";
+      style.wallpapers = [];
+    };
     initrd.systemd.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
     binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -17,7 +27,7 @@
     # Silent boot
     #consoleLogLevel = 0;
     #initrd.verbose = false;
-    initrd.kernelModules = [ "i915" ];
+    #initrd.kernelModules = [ "i915" ];
     #kernelParams = [
     #  "quiet"
     #  "splash"
@@ -41,6 +51,7 @@
   # Services
   systemd.services.NetworkManager-wait-online.enable = false;
   services = {
+    openssh.enable = true;
     fwupd.enable = true;
     # PipeWire Audio
     pipewire = {
@@ -73,6 +84,7 @@
       "wheel"
       "plugdev"
       "libvirtd"
+      "wireshark"
     ];
     shell = pkgs.zsh;
     description = "Sydney Sreedev";
@@ -95,6 +107,8 @@
 
   # Program Settings
   programs.dconf.enable = true;
+  programs.wireshark.enable = true;
+  programs.wireshark.package = pkgs.wireshark;
 
   # Misc
   security.rtkit.enable = true;

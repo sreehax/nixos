@@ -10,10 +10,10 @@
 
   home.packages = with pkgs; [
     # development
-    #zig
+    zig
     tree
     flashrom
-    zigpkgs.master-2025-01-03
+    #zigpkgs.master-2025-01-03
     bun
     acpica-tools
     neovim
