@@ -12,9 +12,15 @@
   boot = {
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot.enable = lib.mkForce false;
-    lanzaboote = {
+    #lanzaboote = {
+    #  enable = true;
+    #  pkiBundle = "/etc/secureboot";
+    #};
+    loader.limine = {
       enable = true;
-      pkiBundle = "/etc/secureboot";
+      efiSupport = true;
+      style.wallpapers = [];
+      extraEntries = builtins.readFile ./limine.extra.conf;
     };
     initrd.systemd.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
@@ -56,6 +62,7 @@
   services = {
     openssh.enable = true;
     openssh.openFirewall = true;
+    openssh.settings.PasswordAuthentication = false;
     usbmuxd.enable = true;
     fwupd.enable = true;
     # PipeWire Audio
@@ -140,6 +147,11 @@
       intel-media-driver
     ];
   };
+
+  # Virtualization
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "sydney" ];
+  #virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # DO NOT CHANGE
   system.stateVersion = "24.05";
