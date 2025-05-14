@@ -98,6 +98,7 @@
       "wireshark"
       "plugdev"
       "adbusers"
+      "libvirtd"
     ];
     shell = pkgs.zsh;
     description = "Sydney Sreedev";
@@ -149,9 +150,25 @@
   };
 
   # Virtualization
-  virtualisation.virtualbox.host.enable = true;
+  #virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "sydney" ];
   #virtualisation.virtualbox.host.enableExtensionPack = true;
+  virtualisation.libvirtd = {
+  enable = true;
+  qemu = {
+    package = pkgs.qemu_kvm;
+    runAsRoot = true;
+    swtpm.enable = true;
+    ovmf = {
+      enable = true;
+      packages = [(pkgs.OVMF.override {
+        secureBoot = true;
+        tpmSupport = true;
+      }).fd];
+    };
+  };
+};
+
 
   # DO NOT CHANGE
   system.stateVersion = "24.05";
